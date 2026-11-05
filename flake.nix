@@ -84,7 +84,7 @@
                   basedpyright --pythonpath ${python}/bin/python
                   python tests/environment.py
                   python tests/publication.py
-                  actionlint
+                  actionlint .github/workflows/*.yml
                   shellcheck .github/scripts/publish-update.sh
                   touch $out
                 '';
