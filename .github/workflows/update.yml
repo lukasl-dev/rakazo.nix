@@ -26,6 +26,11 @@ jobs:
       - name: Capture base
         id: base
         run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Free runner disk space
+        run: |
+          df -h /
+          sudo rm -rf -- /usr/local/lib/android /usr/share/dotnet /usr/local/.ghcup
+          df -h /
       - uses: cachix/install-nix-action@a49548c11d9846ad46ecc0115273879b045f001c # v31
       - name: Generate update
         env:
