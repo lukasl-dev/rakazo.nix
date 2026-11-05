@@ -1,0 +1,4 @@
+[tool.basedpyright]
+typeCheckingMode = "strict"
+pythonVersion = "3.13"
+include = ["rakazo/check-environment.py", "tests"]
