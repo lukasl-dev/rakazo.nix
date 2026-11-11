@@ -70,4 +70,4 @@ nix run .#update -- v0.8.0
 nix flake check
 ```
 
-The updater refreshes the source and dependency hashes in `VERSION.json`. The daily GitHub workflow builds and tests updates before committing and tagging them.
+The updater refreshes the source and dependency hashes in `VERSION.json`. A release that changes pnpm versions also requires updating `rakazo/pnpm.nix`. The daily GitHub workflow builds and tests updates before committing and tagging them.

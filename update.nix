@@ -37,6 +37,11 @@ pkgs.writeShellApplication {
     source="$(nix store prefetch-file --json --unpack "https://github.com/elie222/rakazo/archive/$rev.tar.gz")"
     hash="$(jq -er .hash <<< "$source")"
     source_path="$(jq -er .storePath <<< "$source")"
+    pnpm_version="$(nix eval --raw "path:$work/source#rakazo.pnpmDeps.pnpm.version")"
+    if [[ "$(jq -r .packageManager "$source_path/package.json")" != "pnpm@$pnpm_version" ]]; then
+      echo "Upstream requires a different pnpm version than $pnpm_version; update rakazo/pnpm.nix first" >&2
+      exit 1
+    fi
     mapfile -t engines < <(sed -nE "s/^[[:space:]]*'@prisma\/engines-version@[^']+\.([a-f0-9]{40})'.*/\1/p" "$source_path/pnpm-lock.yaml" | sort -u)
     if [[ "''${#engines[@]}" != 1 ]]; then
       echo 'Expected one pinned Prisma engine revision; manual review required' >&2
