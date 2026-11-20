@@ -72,7 +72,11 @@ stdenv.mkDerivation (finalAttrs: {
   postPatch = ''
     substituteInPlace apps/web/vite.config.ts \
       --replace-fail 'buildIdAt(new Date())' 'buildIdAt(new Date("${metadata.sourceDate}"))'
-    substituteInPlace apps/web/src/asset-archive.ts \
+    archiveSource=apps/web/server/asset-archive.ts
+    if [ ! -f "$archiveSource" ]; then
+      archiveSource=apps/web/src/asset-archive.ts
+    fi
+    substituteInPlace "$archiveSource" \
       --replace-fail 'export const ASSET_ARCHIVE_DIR = "asset-archive";' \
         'export const ASSET_ARCHIVE_DIR = process.env.RAKAZO_ASSET_ARCHIVE_DIR ?? "asset-archive";'
   '';
