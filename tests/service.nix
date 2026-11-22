@@ -49,7 +49,11 @@ pkgs.testers.runNixOSTest {
     machine.wait_for_unit("rakazo-worker.service")
     machine.wait_for_unit("rakazo-web.service")
     machine.wait_until_succeeds("curl --fail http://127.0.0.1:3100/ready", timeout=180)
-    machine.wait_until_succeeds("curl --fail http://127.0.0.1:5173/ | grep -q '<html'", timeout=180)
+    machine.wait_until_succeeds(
+        "curl --fail --silent --show-error --output /tmp/rakazo-index.html http://127.0.0.1:5173/"
+        " && grep -q '<html' /tmp/rakazo-index.html",
+        timeout=180,
+    )
     machine.succeed("curl --fail http://127.0.0.1:5173/api/auth/get-session | jq -e '. == null'")
     machine.succeed("curl --fail http://127.0.0.1:3100/internal/health | jq -e '.sandbox == \"none\"'")
     machine.succeed("pid=$(systemctl show -p MainPID --value rakazo-api); tr '\\0' '\\n' < /proc/$pid/environ | grep -x SIGNUPS_ENABLED=false")
