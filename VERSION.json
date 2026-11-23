@@ -1,9 +1,9 @@
 {
-  "version": "0.13.0",
-  "rev": "5f66c8174b11beea7d30124de9a3edd8f9e9668d",
-  "sourceDate": "2026-11-18T23:02:23Z",
-  "hash": "sha256-FWvVRevt5eF+tKquWxSSa7Jgn8Jv9lhFqQ36QJerNq0=",
-  "pnpmDepsHash": "sha256-gay7MHfTTh9QUqbrik3Li6BdT/vl0bY7aY7nHXvaPM0=",
+  "version": "0.15.0",
+  "rev": "738997790bcf9106d7203fc42bde1497b6c47fb0",
+  "sourceDate": "2026-11-23T10:45:11Z",
+  "hash": "sha256-QQKbl9dokSMuLwaTga3KxNpucKWmdmGAQOOcabyBMRs=",
+  "pnpmDepsHash": "sha256-DMqHmsOHjl7YzMSdMqzWuTmOJtm7l8uVcosCJ8i6M9o=",
   "prismaEngineRev": "d1b3f377ca835d73fd50954a5e22128b9ebdd6b8",
   "prismaEngineHashes": {
     "x86_64-linux": "sha256-WCf1YUkZPwJJsvS4pk5gwwDDEp7WUUutChHDQOHP+tY=",
